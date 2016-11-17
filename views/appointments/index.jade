@@ -10,7 +10,9 @@ block content
           th Reminder time
           th Timezone
           th Actions
-          th
+          th 
+            form(action="/appointments/all/delete",method="POST")
+                button.btn.btn-danger.btn-sm(type='submit') Delete All
       tbody
         each appointment in appointments
           tr

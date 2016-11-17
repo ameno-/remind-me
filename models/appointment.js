@@ -4,33 +4,35 @@ var cfg = require('../config');
 var twilio = require('twilio');
 
 var AppointmentSchema = new mongoose.Schema({
-  name:String,
-  phoneNumber: String,
-  notification : Number,
-  timeZone : String,
-  time : {type : Date, index : true}
+    name: String,
+    phoneNumber: String,
+    notification: Number,
+    timeZone: String,
+    time: { type: Date, index: true },
+    repeat: Number,
+    repeatId: Number
 });
 
-AppointmentSchema.methods.requiresNotification = function (date) {
-  return Math.round(moment.duration(moment(this.time).tz(this.timeZone).utc()
-                          .diff(moment(date).utc())
-                        ).asMinutes()) === this.notification;
+AppointmentSchema.methods.requiresNotification = function(date) {
+    return Math.round(moment.duration(moment(this.time).tz(this.timeZone).utc()
+        .diff(moment(date).utc())
+    ).asMinutes()) === this.notification;
 };
 
 AppointmentSchema.statics.sendNotifications = function(callback) {
 
-  // now
-  var searchDate = new Date();
-  Appointment
-    .find()
-    .then(function (appointments) {
-      appointments = appointments.filter(function(appointment) {
-              return appointment.requiresNotification(searchDate);
-      });
-      if (appointments.length > 0) {
-        sendNotifications(appointments);
-      }
-    });
+    // now
+    var searchDate = new Date();
+    Appointment
+        .find()
+        .then(function(appointments) {
+            appointments = appointments.filter(function(appointment) {
+                return appointment.requiresNotification(searchDate);
+            });
+            if (appointments.length > 0) {
+                sendNotifications(appointments);
+            }
+        });
 
     // Send messages to all appoinment owners via Twilio
     function sendNotifications(docs) {
@@ -40,7 +42,7 @@ AppointmentSchema.statics.sendNotifications = function(callback) {
             var options = {
                 to: "+" + appointment.phoneNumber,
                 from: cfg.twilioPhoneNumber,
-                body: "Hi " + appointment.name + ". Just a reminder that you have an appointment coming up  " + moment(appointment.time).calendar() +"."
+                body: "Hi " + appointment.name + ". Just a reminder that you have an appointment coming up  " + moment(appointment.time).calendar() + "."
             };
 
             // Send the message!
@@ -61,7 +63,7 @@ AppointmentSchema.statics.sendNotifications = function(callback) {
         // Don't wait on success/failure, just indicate all messages have been
         // queued for delivery
         if (callback) {
-          callback.call(this);
+            callback.call(this);
         }
     }
 };
