@@ -92,5 +92,5 @@ function onListening() {
 }
 
 
-mongoose.connect("cfg.mongoUrl");
+mongoose.connect("mongodb://ameno:playtime.nap.startup@ds050879.mlab.com:50879/appointments-store");
 mongoose.Promise = require('bluebird');
