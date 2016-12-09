@@ -1,14 +1,6 @@
-# Appointment Reminders. Powered by Twilio - Node.js/Express
+# Appointment Reminders. with twillio and Node.js
 
-[![Build
-Status](https://travis-ci.org/TwilioDevEd/appointment-reminders-node.svg?branch=master)](https://travis-ci.org/TwilioDevEd/appointment-reminders-node)
-
-
-Use Twilio to create automatic appointment reminders for your business users.
-
-
-## Local development
-
+## Get started
 First you need to install [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/).
 
 1. This sample application stores data in a [MongoDB](https://www.mongodb.org/) database using [Mongoose](http://mongoosejs.com/). You can   download and run MongoDB yourself (on OS X, Linux or Windows).
@@ -74,9 +66,3 @@ You can run the tests locally by typing
 ```bash
 $ mocha test
 ```
-
-## Meta
-
-* No warranty expressed or implied. Software is as is. Diggity.
-* [MIT License](http://www.opensource.org/licenses/mit-license.html)
-* Lovingly crafted by Twilio Developer Education.
