@@ -1,4 +1,4 @@
-# Appointment Reminders. with twillio and Node.js
+# Appointment Reminders. with twillio, Node.js, React.js, Redux
 
 ## Get started
 First you need to install [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/).
@@ -21,9 +21,9 @@ To run the app locally:
 1. Clone this repository and `cd` into it
 
    ```bash
-   $ git clone git@github.com:TwilioDevEd/appointment-reminders-node.git
+   $ git clone https://github.com/ameno-/remind-me.git
 
-   $ cd appointment-reminders-node
+   $ cd reminders-me
    ```
 
 1. Install dependencies
